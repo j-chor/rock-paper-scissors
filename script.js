@@ -10,60 +10,66 @@ function getPlayerChoice() {
 }
 
 function playRound(playerChoice, computerChoice) {
-  switch (playerChoice) {
-    case "rock":
-      switch (computerChoice) {
-        case "rock":
-          return "draw";
-        case "paper":
-          return "lose";
-        case "scissors":
-          return "win";
-      }
-    case "paper":
-      switch (computerChoice) {
-        case "rock":
-          return "win";
-        case "paper":
-          return "draw";
-        case "scissors":
-          return "lose";
-      }
-    case "scissors":
-      switch (computerChoice) {
-        case "rock":
-          return "lose";
-        case "paper":
-          return "win";
-        case "scissors":
-          return "draw";
-      }
+  let outcome = result();
+  if (outcome == "win") return `You win!\n${playerChoice.charAt(0).toUpperCase()+playerChoice.slice(1)} beats ${computerChoice}!`;
+  if (outcome == "lose") return `You lose!\n${computerChoice.charAt(0).toUpperCase()+computerChoice.slice(1)} beats ${playerChoice}!`;
+  if (outcome == "draw") return "It's a draw!";
+
+
+  function result() {
+    switch (playerChoice) {
+      case "rock":
+        switch (computerChoice) {
+          case "rock":
+            return "draw";
+          case "paper":
+            return "lose";
+          case "scissors":
+            return "win";
+        }
+      case "paper":
+        switch (computerChoice) {
+          case "rock":
+            return "win";
+          case "paper":
+            return "draw";
+          case "scissors":
+            return "lose";
+        }
+      case "scissors":
+        switch (computerChoice) {
+          case "rock":
+            return "lose";
+          case "paper":
+            return "win";
+          case "scissors":
+            return "draw";
+        }
+    }
   }
 }
 
 function game() {
-  let score0 = 0;
-  let score1 = 0;
-
+  let scorePlayer = 0;
+  let scoreComputer = 0;
   for (let i = 0; i<5; i++) {
-    let outcome = playRound(getPlayerChoice(), getComputerChoice());
-    console.log(outcome)
-    if (outcome == "win") {
-      console.log(`You win!\n${playerChoice.charAt(0).toUpperCase()+playerChoice.slice(1)} beats ${computerChoice}!`);
-      score0 += 1;
+    let result = playRound(getPlayerChoice(), getComputerChoice());
+    if (result.includes("win")) {
+      console.log(result);
+      scorePlayer += 1;
     }
-    else if (outcome == "lose") {
-      console.log(`You lose!\n${computerChoice.charAt(0).toUpperCase()+computerChoice.slice(1)} beats ${playerChoice}!`);
-      score1 += 1;
+    else if (result.includes("lose")) {
+      console.log(result);
+      scoreComputer += 1;
     }
-    else if (outcome == "draw") {
-      console.log("It's a draw!");
-      score0 += 0.5;
-      score1 += 0.5;
+    else if (result.includes("draw")) {
+      console.log(result);
+      scoreComputer += 0.5;
+      scorePlayer += 0.5;
     }
-    else console.log("no outcome???")
+    else console.log("error")
   }
-  if (score0 > score1) alert("You win!!!");
-  else if (score0 < score1) alert("You lose!!!");
-  else if (score0 == score1) alert("It's a draw. Nobody wins, everyone loses.");
+  if (scorePlayer > scoreComputer) console.log(`PLAYER ${scorePlayer} : ${scoreComputer} COMPUTER\nYou win!`);
+  else if (scorePlayer < scoreComputer) console.log(`PLAYER ${scorePlayer} : ${scoreComputer} COMPUTER\nYou lose!`);
+  else if (scorePlayer == scoreComputer) console.log(`PLAYER${scorePlayer} : ${scoreComputer} COMPUTER\nIt's a draw - nobody wins, everybody loses!`);
 }
