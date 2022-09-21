@@ -11,8 +11,8 @@ function getPlayerChoice() {
 
 function playRound(playerChoice, computerChoice) {
   let outcome = result();
-  if (outcome == "win") return `You win!\n${playerChoice.charAt(0).toUpperCase()+playerChoice.slice(1)} beats ${computerChoice}!`;
-  if (outcome == "lose") return `You lose!\n${computerChoice.charAt(0).toUpperCase()+computerChoice.slice(1)} beats ${playerChoice}!`;
+  if (outcome == "win") return `You win!\n${playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)} beats ${computerChoice}!`;
+  if (outcome == "lose") return `You lose!\n${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)} beats ${playerChoice}!`;
   if (outcome == "draw") return "It's a draw!";
 
 
@@ -52,7 +52,7 @@ function playRound(playerChoice, computerChoice) {
 function game() {
   let scorePlayer = 0;
   let scoreComputer = 0;
-  for (let i = 0; i<5; i++) {
+  for (let i = 0; i < 5; i++) {
     let result = playRound(getPlayerChoice(), getComputerChoice());
     if (result.includes("win")) {
       console.log(result);
