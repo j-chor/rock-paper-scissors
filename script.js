@@ -9,6 +9,20 @@ function getPlayerChoice() {
   return prompt("Rock, paper or scissors?").toLowerCase();
 }
 
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+
+rock.addEventListener("click", (e) => {
+  console.log(playRound("rock", getComputerChoice()));
+})
+paper.addEventListener("click", (e) => {
+  console.log(playRound("paper", getComputerChoice()));
+})
+scissors.addEventListener("click", (e) => {
+  console.log(playRound("scissors", getComputerChoice()));
+})
+
 function playRound(playerChoice, computerChoice) {
   let outcome = result();
   if (outcome == "win") return `You win!\n${playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)} beats ${computerChoice}!`;
