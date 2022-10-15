@@ -14,14 +14,19 @@ const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
 
 rock.addEventListener("click", (e) => {
-  console.log(playRound("rock", getComputerChoice()));
+  announcement.textContent = (playRound("rock", getComputerChoice()));
 })
 paper.addEventListener("click", (e) => {
-  console.log(playRound("paper", getComputerChoice()));
+  announcement.textContent = playRound("paper", getComputerChoice());
 })
 scissors.addEventListener("click", (e) => {
-  console.log(playRound("scissors", getComputerChoice()));
+  announcement.textContent = playRound("scissors", getComputerChoice());
 })
+
+
+
+let announcement = document.createElement("p");
+document.body.appendChild(announcement);
 
 function playRound(playerChoice, computerChoice) {
   let outcome = result();
