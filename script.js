@@ -9,24 +9,50 @@ function getPlayerChoice() {
   return prompt("Rock, paper or scissors?").toLowerCase();
 }
 
+let testvar = 0;
+function testfunc(testt) {
+  if (true) {testt++}
+  testt++;
+}
+
+testfunc(testvar);
+console.log(testvar);
+
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
 
+let announcement = document.createElement("p");
+document.body.appendChild(announcement);
+
+let scoreP = 0;
+let scoreC = 0;
+let scoretext = document.createElement("p");
+
+document.body.appendChild(scoretext);
+
+function addScore(announcement, scoretext) {
+  if (announcement.textContent.includes("win")) {scoreP++;}
+  else if (announcement.textContent.includes("lose")) {scoreC++}
+}
+
 rock.addEventListener("click", (e) => {
   announcement.textContent = (playRound("rock", getComputerChoice()));
+  addScore(announcement, scoreP, scoreC, scoretext);
+  scoretext.innerText = scoreP + '' + " - " + scoreC + '';
 })
 paper.addEventListener("click", (e) => {
   announcement.textContent = playRound("paper", getComputerChoice());
+  addScore(announcement, scoreP, scoreC, scoretext);
+  scoretext.innerText = scoreP + '' + " - " + scoreC + '';
 })
 scissors.addEventListener("click", (e) => {
   announcement.textContent = playRound("scissors", getComputerChoice());
+  addScore(announcement, scoreP, scoreC, scoretext);
+  scoretext.innerText = scoreP + '' + " - " + scoreC + '';
 })
 
 
-
-let announcement = document.createElement("p");
-document.body.appendChild(announcement);
 
 function playRound(playerChoice, computerChoice) {
   let outcome = result();
