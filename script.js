@@ -18,6 +18,8 @@ function testfunc(testt) {
 testfunc(testvar);
 console.log(testvar);
 
+const choices = document.querySelector("#choices");
+
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
@@ -31,28 +33,37 @@ let scoretext = document.createElement("p");
 
 document.body.appendChild(scoretext);
 
-function addScore(announcement, scoretext) {
+function addScore(announcement) {
   if (announcement.textContent.includes("win")) {scoreP++;}
   else if (announcement.textContent.includes("lose")) {scoreC++}
 }
 
 rock.addEventListener("click", (e) => {
   announcement.textContent = (playRound("rock", getComputerChoice()));
-  addScore(announcement, scoreP, scoreC, scoretext);
+  addScore(announcement);
   scoretext.innerText = scoreP + '' + " - " + scoreC + '';
+  gameOver();
 })
 paper.addEventListener("click", (e) => {
   announcement.textContent = playRound("paper", getComputerChoice());
-  addScore(announcement, scoreP, scoreC, scoretext);
+  addScore(announcement);
   scoretext.innerText = scoreP + '' + " - " + scoreC + '';
+  gameOver();
 })
 scissors.addEventListener("click", (e) => {
   announcement.textContent = playRound("scissors", getComputerChoice());
-  addScore(announcement, scoreP, scoreC, scoretext);
+  addScore(announcement);
   scoretext.innerText = scoreP + '' + " - " + scoreC + '';
+  gameOver();
 })
 
-
+function gameOver() {
+  if (scoreP >= 5 || scoreC >= 5) {
+    alert("wtf?!");
+    document.body.removeChild(choices);
+    if (scoreP > scoreC) announcement.textContent = "Game's over! You win!";
+    else announcement.textContent = "Game's over! You lose!";
+  }}
 
 function playRound(playerChoice, computerChoice) {
   let outcome = result();
