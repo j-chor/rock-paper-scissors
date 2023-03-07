@@ -59,10 +59,7 @@ scissors.addEventListener("click", (e) => {
 
 function gameOver() {
   if (scoreP >= 5 || scoreC >= 5) {
-<<<<<<< HEAD
-=======
     alert("wtf?!");
->>>>>>> ad5f079738c013895a689938c604d015a3278103
     document.body.removeChild(choices);
     if (scoreP > scoreC) announcement.textContent = "Game's over! You win!";
     else announcement.textContent = "Game's over! You lose!";
